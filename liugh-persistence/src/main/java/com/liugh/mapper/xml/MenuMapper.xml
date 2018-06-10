@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liugh.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liugh.entity.Menu">
+        <id column="menu_id" property="menuId" />
+        <result column="parent_id" property="parentId" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="ismenu" property="ismenu" />
+        <result column="num" property="num" />
+        <result column="url" property="url" />
+        <result column="describe" property="describe" />
+    </resultMap>
+
+    <resultMap id="RoleToMenuMap" type="com.liugh.entity.Menu">
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="ismenu" property="ismenu" />
+        <result column="num" property="num" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        menu_id AS menuId, parent_id AS parentId, code, name, ismenu, num, url, describe
+    </sql>
+
+    <!-- 根据角色查询菜单 -->
+    <select id="findMenuByRoleId" resultMap="RoleToMenuMap">
+        SELECT
+        sys_menu.code,
+        sys_menu.name,
+        sys_menu.ismenu,
+        sys_menu.num
+        FROM
+        sys_menu
+        JOIN
+        sys_role_to_menu
+        ON
+        sys_menu.menu_id = sys_role_to_menu.menu_id
+        WHERE
+        1 = 1
+        <if test=" roleId !=null and roleId !=''">
+            AND sys_role_to_menu.role_id = #{roleId}
+        </if>
+        <if test=" status !=null and status !=''">
+            AND sys_role_to_menu.status = #{status}
+        </if>
+    </select>
+
+</mapper>

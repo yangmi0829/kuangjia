@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liugh.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liugh.entity.User">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="email" property="email" />
+        <result column="pass_word" property="passWord" />
+        <result column="telephone" property="telephone" />
+        <result column="unit" property="unit" />
+        <result column="create_time" property="createTime" />
+        <result column="province_id" property="provinceId" />
+        <result column="city_id" property="cityId" />
+        <result column="area_id" property="areaId" />
+        <result column="real_name" property="realName" />
+        <result column="head_image" property="headImage" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id AS userId, user_name AS userName, sex, birthday, email, pass_word AS passWord, telephone, unit, create_time AS createTime, province_id AS provinceId, city_id AS cityId, area_id AS areaId, real_name AS realName, head_image AS headImage, status
+    </sql>
+
+</mapper>

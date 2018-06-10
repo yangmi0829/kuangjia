@@ -1,0 +1,6 @@
+/liugh-web/target/*
+/liugh-common/target/*
+/liugh-persistence/target/*
+/liugh-service/target/*
+/.idea
+*.iml
